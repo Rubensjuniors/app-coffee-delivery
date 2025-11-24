@@ -1,0 +1,65 @@
+{
+  "ignorePatterns": ["dist/**", "node_modules/**", "*.config.js", "*.config.ts", "cypress/**", "public/**"],
+  "env": {
+    "browser": true,
+    "es2020": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "plugins": ["react", "react-hooks", "react-refresh", "@typescript-eslint", "simple-import-sort"],
+  "settings": {
+    "react": {
+      "version": "18.3"
+    }
+  },
+  "rules": {
+    "quotes": ["error", "single"],
+    "semi": ["error", "never"],
+    "react/react-in-jsx-scope": "off",
+    "object-curly-spacing": ["error", "always"],
+    "space-before-function-paren": ["error", "never"],
+    "comma-spacing": ["error", { "before": false, "after": true }],
+    "array-bracket-spacing": ["error", "never"],
+    "space-in-parens": ["error", "never"],
+    "key-spacing": ["error", { "beforeColon": false, "afterColon": true }],
+    "space-before-blocks": ["error", "always"],
+    "no-trailing-spaces": "error",
+    "no-multiple-empty-lines": ["error", { "max": 1 }],
+    "eol-last": ["error", "always"],
+    "no-var": "error",
+    "prefer-const": "error",
+    "no-console": "warn",
+    "react/prop-types": "off",
+    "react/jsx-key": "error",
+    "react/jsx-pascal-case": "error",
+    "react/self-closing-comp": ["error", { "component": true, "html": true }],
+    "prefer-template": "error",
+    "arrow-spacing": ["error", { "before": true, "after": true }],
+    "no-duplicate-imports": "error",
+    "object-shorthand": ["error", "always"],
+    "no-useless-return": "error",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react-refresh/only-export-components": ["warn", { "allowConstantExport": true }],
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "complexity": ["error", { "max": 20 }],
+    "max-depth": ["error", 4],
+    "max-lines": ["error", { "max": 300, "skipBlankLines": true }],
+    "max-lines-per-function": ["error", { "max": 110, "skipBlankLines": true }],
+    "max-params": ["error", 3],
+    "max-nested-callbacks": ["error", 3]
+  }
+}
