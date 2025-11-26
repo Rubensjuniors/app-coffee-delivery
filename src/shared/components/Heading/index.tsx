@@ -8,8 +8,8 @@ const levelVariants = {
   h2: 'text-xl sm:text-2xl md:text-3xl lg:text-4xl',
   h3: 'text-lg sm:text-xl md:text-2xl lg:text-3xl',
   h4: 'text-xl sm:text-lg md:text-xl lg:text-2xl',
-  h5: 'text-xl sm:text-base md:text-lg lg:text-xl',
-  h6: 'text-xl sm:text-sm md:text-base lg:text-lg'
+  h5: 'text-xl md:text-lg lg:text-xl',
+  h6: 'text-xl md:text-base lg:text-lg'
 } as const
 
 // Weight variants

@@ -22,12 +22,86 @@ export function CartProvider({ children }: CartProviderProps) {
     })
   }, [])
 
+  const handleIncreaseSelectedCoffee = useCallback((id: string) => {
+    setSelectedCoffee((prev) => {
+      const updatedArray = prev.map((coffee) => {
+        if (coffee.id === id) {
+          const newCount = coffee.count < coffee.coffeeLimit ? coffee.count + 1 : coffee.coffeeLimit
+          return { ...coffee, count: newCount }
+        }
+
+        return coffee
+      })
+
+      localStorage.setItem('persitedCart', JSON.stringify(updatedArray))
+      return updatedArray
+    })
+  }, [])
+
+  const handleDecreaseSelectedCoffee = useCallback((id: string) => {
+    setSelectedCoffee((prev) => {
+      const updatedArray = prev.map((coffee) => {
+        if (coffee.id === id) {
+          const newCount = coffee.count > 1 ? coffee.count - 1 : 1
+          return { ...coffee, count: newCount }
+        }
+
+        return coffee
+      })
+
+      localStorage.setItem('persitedCart', JSON.stringify(updatedArray))
+      return updatedArray
+    })
+  }, [])
+
+  const handleRemoveSelectedCoffee = useCallback((id: string) => {
+    setSelectedCoffee((prev) => {
+      const updatedArray = prev.filter((coffee) => coffee.id !== id)
+
+      localStorage.setItem('persitedCart', JSON.stringify(updatedArray))
+      return updatedArray
+    })
+  }, [])
+
+  const handleClearCart = useCallback(() => {
+    setSelectedCoffee([])
+    localStorage.removeItem('persitedCart')
+  }, [])
+
+  const frete = 3.5
+  const totalOrders = useMemo(
+    () => selectedCoffee.reduce((total, item) => total + item.price * item.count, 0),
+    [selectedCoffee]
+  )
+  const total = totalOrders + frete
+
+  const hasProductsAtCart = selectedCoffee.length > 0
+
   const value = useMemo(() => {
     return {
       selectedCoffee,
-      handleSelectedCoffee
+      handleSelectedCoffee,
+      handleIncreaseSelectedCoffee,
+      handleDecreaseSelectedCoffee,
+      handleRemoveSelectedCoffee,
+      handleClearCart,
+      frete,
+      totalOrders,
+      total,
+      hasProductsAtCart
     }
-  }, [selectedCoffee, handleSelectedCoffee])
+  }, [
+    selectedCoffee,
+    handleSelectedCoffee,
+    handleIncreaseSelectedCoffee,
+    handleDecreaseSelectedCoffee,
+    handleRemoveSelectedCoffee,
+    handleClearCart,
+    frete,
+    totalOrders,
+    total,
+    hasProductsAtCart
+  ])
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>
 }
 
