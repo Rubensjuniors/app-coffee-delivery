@@ -1,3 +1,6 @@
+import { useState } from 'react'
+
+import { useCartContext } from '@/features/cart/context/useCartContext'
 import { CartButton } from '@/shared/components/CartButton'
 import { Heading } from '@/shared/components/Heading'
 import { Badge } from '@/shared/components/ui/badge'
@@ -6,8 +9,11 @@ import { Card } from '@/shared/components/ui/card'
 import type { ICoffee } from '@/shared/types/coffee'
 import { formatPrice } from '@/shared/utils/formatPrice'
 
-export function CardCoffee({ description, image, name, price, tags }: ICoffee) {
+export function CardCoffee({ id, description, image, name, price, tags, coffeeLimit }: ICoffee) {
+  const { handleSelectedCoffee } = useCartContext()
+  const [countCoffee, setCountCoffee] = useState(1)
   const priceValue = formatPrice(price)
+
   return (
     <Card className="max-w-[256px] min-h-[270px] rounded-tl-[5px] rounded-br-[5px] rounded-tr-3xl rounded-bl-3xl border-0 flex flex-col items-center justify-center gap-0 px-3 py-0">
       <picture className="relative -top-4 flex items-center h-23 justify-center">
@@ -34,11 +40,51 @@ export function CardCoffee({ description, image, name, price, tags }: ICoffee) {
 
           <div className="flex items-center gap-1">
             <div className="flex items-center rounded-sm bg-base-button">
-              <Button size="icon" className="text-secondary text-2xl bg-transparent hover:bg-transparent">-</Button>
-              <span>1</span>
-              <Button size="icon" className="text-secondary text-base bg-transparent hover:bg-transparent">+</Button>
+              <Button
+                size="icon"
+                className="text-secondary text-2xl bg-transparent hover:bg-transparent"
+                disabled={countCoffee <= 1}
+                onClick={() =>
+                  setCountCoffee((prev) => {
+                    if (prev > 1) {
+                      return prev - 1
+                    }
+
+                    return 1
+                  })
+                }
+              >
+                -
+              </Button>
+              <span>{countCoffee}</span>
+              <Button
+                size="icon"
+                className="text-secondary text-base bg-transparent hover:bg-transparent"
+                disabled={coffeeLimit <= 1 || countCoffee === coffeeLimit}
+                onClick={() =>
+                  setCountCoffee((prev) => {
+                    if (prev < coffeeLimit) {
+                      return prev + 1
+                    }
+
+                    return coffeeLimit
+                  })
+                }
+              >
+                +
+              </Button>
             </div>
-            <CartButton color="purple" onClickCart={() => void 0} />
+            <CartButton
+              color="purple"
+              onClickCart={() =>
+                handleSelectedCoffee({
+                  id,
+                  image,
+                  name,
+                  count: countCoffee
+                })
+              }
+            />
           </div>
         </div>
       </div>

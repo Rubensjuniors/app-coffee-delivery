@@ -12,10 +12,10 @@ function AppRouter() {
       <Route path="/" element={<Structor />}>
         <Route index element={<HomePage />} />
         <Route
-          path="teste"
+          path="checkout"
           element={
             <>
-              <Button>Teste</Button>
+              <Button>checkout</Button>
             </>
           }
         />
