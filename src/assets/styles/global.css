@@ -60,11 +60,13 @@
   --destructive: oklch(0.577 0.245 27.325);
   --input: oklch(0.92 0.004 286.32);
   --ring: oklch(0.606 0.25 292.717);
+  --outline-ring: oklch(0.606 0.25 292.717 / 0.5);
 }
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
+    outline-color: var(--outline-ring);
   }
   body {
     @apply bg-background text-foreground;
