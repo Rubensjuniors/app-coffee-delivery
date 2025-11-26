@@ -25,14 +25,14 @@
   --color-card-foreground: var(--card-foreground);
   --animate-shine: shine var(--duration) infinite linear;
   @keyframes shine {
-  0% {
-    background-position: 0% 0%;
+    0% {
+      background-position: 0% 0%;
     }
-  50% {
-    background-position: 100% 100%;
+    50% {
+      background-position: 100% 100%;
     }
-  to {
-    background-position: 0% 0%;
+    to {
+      background-position: 0% 0%;
     }
   }
 }
@@ -52,12 +52,19 @@
 
   --card: oklch(0.9619 0.0011 17.18);
   --card-foreground: oklch(0.4347 0.0112 34.3);
-  --base-button: #E6E5E5;
+  --base-button: #e6e5e5;
+
+  /* Variáveis em uso no código */
+  --accent: oklch(0.967 0.001 286.375);
+  --accent-foreground: oklch(0.21 0.006 285.885);
+  --destructive: oklch(0.577 0.245 27.325);
+  --input: oklch(0.92 0.004 286.32);
+  --ring: oklch(0.606 0.25 292.717);
 }
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-border outline-ring/50;
   }
   body {
     @apply bg-background text-foreground;
@@ -76,14 +83,5 @@
 
   .no-scrollbar::-webkit-scrollbar {
     display: none; /* Chrome, Safari, etc */
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
   }
 }
