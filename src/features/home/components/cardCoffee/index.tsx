@@ -81,6 +81,7 @@ export function CardCoffee({ id, description, image, name, price, tags, coffeeLi
                   id,
                   image,
                   name,
+                  price,
                   count: countCoffee
                 })
               }

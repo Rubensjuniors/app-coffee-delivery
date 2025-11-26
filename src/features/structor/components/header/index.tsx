@@ -30,7 +30,7 @@ export function Header() {
             <MapPin className="text-secondary-foreground" strokeWidth={3} />
             <span className="hidden sm:inline-block text-secondary-foreground">Loc</span>
           </Button>
-          <CartButton color="yellow" onClickCart={handleClickCart} count={count} />
+          <CartButton color="yellow" onClickCart={handleClickCart} count={count} isDisabled={count <= 0} />
         </div>
       </div>
     </header>

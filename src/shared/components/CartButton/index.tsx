@@ -5,7 +5,7 @@ import { cn } from '@/shared/lib/utils'
 import { Button } from '../ui/button'
 import type { CartButtonProps } from './types'
 
-export function CartButton({ color, onClickCart, count }: CartButtonProps) {
+export function CartButton({ color, onClickCart, count, isDisabled }: CartButtonProps) {
   return (
     <div>
       <Button
@@ -14,6 +14,7 @@ export function CartButton({ color, onClickCart, count }: CartButtonProps) {
           'bg-primary hover:bg-primary-foreground/80': color === 'yellow',
           'bg-secondary hover:bg-secondary-foreground/80': color === 'purple'
         })}
+        disabled={isDisabled}
         onClick={onClickCart}
       >
         <ShoppingCart strokeWidth={3} />
